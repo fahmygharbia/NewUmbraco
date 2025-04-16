@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="redirectUrls">
+    <key alias="redirectUrlManagement">Automatic Redirects</key>
+  </area>
+  <area alias="dashboardTabs">
+    <key alias="contentRedirectManager">Automatic Redirects</key>
+  </area>
+  
+  // Edit login text in login page
+  <area alias="login">
+    <key alias="greeting0">Welcome To Fahmy Gharbia</key>
+    <key alias="greeting1">Welcome To Fahmy Gharbia</key>
+    <key alias="greeting2">Welcome To Fahmy Gharbia</key>
+    <key alias="greeting3">Welcome To Fahmy Gharbia</key>
+    <key alias="greeting4">Welcome To Fahmy Gharbia</key>
+    <key alias="greeting5">Welcome To Fahmy Gharbia</key>
+    <key alias="greeting6">Welcome To Fahmy Gharbia</key>
+  </area>
+</language>
