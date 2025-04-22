@@ -1,0 +1,28 @@
+﻿@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Download>>
+
+@{
+	var media = Model.Content.UploadPdf;
+	var details = media?.GetFileDetails();
+}
+
+<div class="bg-gray-300 p-4 flex justify-between items-start rounded-[16px] border-2 border-[#E1E3E5] rounded-[16px] p-5">
+	<div class="file-content flex flex-col ">
+		<div class="flex gap-5 flex-col md:flex-row">
+			<img class="max-w-[48px]" src="../images/FilePdf.svg" alt="" srcset="">
+			<h6>@Model.Content.Title</h6>
+		</div>
+
+		@if (details != null)
+		{
+			<p class="text-[#5F646D] text-[12px] m-0">
+				Size @details.SizeMB MB - Format: @details.Format - Updating Date @details.UpdatingDate.ToString("d/M/yyyy")
+			</p>
+		}
+	</div>
+	<div class="download-file">
+		<a href="@media?.Url()">
+			Download
+			@* <img class="lg:w-full w-[100px] max-w-[33px]" src="../images/DownloadSimple.svg" alt="" srcset=""> *@
+		</a>
+	</div>
+</div>

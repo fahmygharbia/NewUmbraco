@@ -1,0 +1,75 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Feedback>>
+
+<div class="container flex flex-col lg:flex-row gap-5 mx-auto px-4 md:px-6 lg:px-8 py-12">
+	<!-- Feedback -->
+	<div class="w-full flex items-center flex-col sm:flex-row justify-between bg-[#F7F7F7] p-5 rounded-[12px]">
+		<!-- Left Content -->
+		<div class="sm:w-[50%] w-full">
+			<div class="feedback-left">
+				<div>
+					<!-- without background -->
+					<div>
+						<div class="text-lg md:text-xl xl:text-2xl text-aeblack-950 font-bold font-inter leading-normal mb-3">
+							@Model.Content.QuestionContent
+						</div>
+						<p class="text-aeblack-500 font-light mb-5 md:mb-7 xl:mb-9">
+
+							@Model.Content.ShortDescription
+						</p>
+						<div class="flex gap-6 flex-nowrap w-max">
+							<button class="aegov-btn btn-outline" aria-label="Register">
+								<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+									 viewBox="0 0 256 256">
+									<rect width="256" height="256" fill="none" />
+									<path d="M32,104H80a0,0,0,0,1,0,0V208a0,0,0,0,1,0,0H32a8,8,0,0,1-8-8V112A8,8,0,0,1,32,104Z"
+										  fill="none" stroke="currentColor" stroke-linecap="round"
+										  stroke-linejoin="round" stroke-width="16" />
+									<path d="M80,104l40-80a32,32,0,0,1,32,32V80h64a16,16,0,0,1,15.87,18l-12,96A16,16,0,0,1,204,208H80"
+										  fill="none" stroke="currentColor" stroke-linecap="round"
+										  stroke-linejoin="round" stroke-width="16" />
+								</svg>
+								@Model.Content.Option1
+							</button>
+							<button class="aegov-btn btn-outline" aria-label="Register">
+								<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+									 viewBox="0 0 256 256">
+									<rect width="256" height="256" fill="none" />
+									<path d="M32,48H80a0,0,0,0,1,0,0V152a0,0,0,0,1,0,0H32a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8Z"
+										  fill="none" stroke="currentColor" stroke-linecap="round"
+										  stroke-linejoin="round" stroke-width="16" />
+									<path d="M80,152l40,80a32,32,0,0,0,32-32V176h64a16,16,0,0,0,15.87-18l-12-96A16,16,0,0,0,204,48H80"
+										  fill="none" stroke="currentColor" stroke-linecap="round"
+										  stroke-linejoin="round" stroke-width="16" />
+								</svg>
+								@Model.Content.Option2
+							</button>
+						</div>
+					</div>
+				</div>
+				<div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Vertical Line -->
+		<div class="feedback-middle w-[100%] sm:w-px h-[1px] sm:h-[152px] bg-[#C3C6CB]"></div>
+
+		<!-- Right Content -->
+		<div class="feedback-right sm:w-[50%] w-full flex p-5 gap-5 justify-center items-center">
+			<div><img src="@Model.Content.Image?.Url()" alt="" srcset=""></div>
+			<div class="flex flex-col justify-center items-start">
+				<p class="max-w-[40ch]">
+					@Model.Content.QuestionService
+				</p>
+				
+				<a href="@Model.Content.Link?.Url" class="btn aegov-btn btn-outline max-w-fit">
+					@Model.Content.Link?.Name
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
