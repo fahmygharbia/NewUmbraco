@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+	if (Model?.Areas.Any() != true) { return; }
+}
+
+
+<div class="py-12 bg-[#F7F7F7]">
+	<div class="container md:flex-row flex-col-reverse flex gap-20">
+
+
+		@foreach (var area in Model.Areas)
+		{
+		
+			@await Html.GetBlockGridItemAreaHtmlAsync(area)
+		
+		}
+	</div>
+</div>

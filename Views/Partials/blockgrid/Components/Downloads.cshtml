@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+	if (Model?.Areas.Any() != true) { return; }
+}
+
+
+<div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+	
+	@foreach (var area in Model.Areas)
+	{
+		@await Html.GetBlockGridItemAreaHtmlAsync(area)
+
+	}
+
+</div>
