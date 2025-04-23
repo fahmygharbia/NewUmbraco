@@ -1,0 +1,47 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.TextSideAccordion>>
+
+@{
+	const int TEXT_AREA = 0;
+	const int ACCORDION_AREA = 1;
+}
+
+
+<section class="container flex flex-col md:flex-row gap-5 mx-auto px-4 md:px-6 lg:px-8 py-12">
+
+
+	@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TEXT_AREA))
+
+
+	@{
+		var accordionArea = Model.Areas.ElementAt(ACCORDION_AREA);
+		if (accordionArea != null && accordionArea.Any())
+		{
+
+			foreach (var item in accordionArea)
+			{
+				<div class="w-full flex flex-col gap-5">
+					<div class="aegov-accordion [&_.accordion-active_svg]:rotate-180" id="accordion-collapse"
+						 data-accordion="collapse">
+
+						@await Html.PartialAsync("blockgrid/Components/Accordion", item)
+
+					</div>
+				</div>
+
+
+			}
+		}
+	}
+
+
+
+</section>
+
+
+
+
+
+
+
+
