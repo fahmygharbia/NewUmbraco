@@ -1,4 +1,5 @@
 using NewUmbraco.Configuration;
+using NewUmbraco.Services;
 
 using Slimsy.DependencyInjection;
 

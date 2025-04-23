@@ -1,45 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+using NewUmbraco.Services;
+
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 
 public class SidebarController : UmbracoApiController
 {
     private readonly IUmbracoContextFactory _context;
+   // private readonly ISiteService _siteService;
 
-    public SidebarController(IUmbracoContextFactory contextFactory)
+    public SidebarController(IUmbracoContextFactory contextFactory )
     {
         _context = contextFactory;
-    }
-
-    [HttpGet]
-    public IActionResult GetContent(int id)
-    {
-        using var context = _context.EnsureUmbracoContext();
-        var content = context.UmbracoContext.Content?.GetById(id);
-        if (content == null) return NotFound();
-
-        var isNewPage = content.Value<bool>("newPage");
-
-        if (isNewPage)
-        {
-            var url = content.Url();
-            return Redirect(url);
-        }
-        else
-        {
-            return new ViewResult
-            {
-                ViewName = "~/Views/Partials/_BlockGridContent.cshtml",
-                ViewData = new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<IPublishedContent>(
-               new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(),
-               new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary())
-                {
-                    Model = content
-                }
-            };
-        }
-
+      //  _siteService = siteService;
 
     }
+
+    //[HttpGet]
+    // public IActionResult GetContent(int id)
+    //{
+    //    var pageContent = _siteService.GetContent(id);
+
+    //    if (pageContent == null)
+    //    {
+    //        return NotFound();
+    //    }
+
+    //    return Json(new
+    //    {
+    //        isNewPage = pageContent.IsNewPage,
+    //        returnUrl = pageContent.ReturnURl
+    //    });
+    //}
+
+    //[HttpGet]
+    //public IActionResult GetContentHtml(int id)
+    //{
+    //    var pageContent = _siteService.GetContent(id);
+
+    //    if (pageContent == null || pageContent.IsNewPage)
+    //    {
+    //        return NotFound();
+    //    }
+
+    //    return PartialView("~/Views/Partials/_BlockGridContent.cshtml", pageContent.Model);
+    //}
 }
