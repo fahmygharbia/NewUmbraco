@@ -1,0 +1,182 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SidebarPage>
+
+
+@{
+	Layout = "SidebarLayout";
+
+	var rootNode = Umbraco.ContentAtRoot().FirstOrDefault();
+	var sidebarNode = rootNode?.Children.FirstOrDefault(x => x.Name == "Sidebar");
+	var childNodes = sidebarNode?.Children?.Where(x => x.IsPublished()).Select(x=> new { Id = x.Id, Name = x.Name }).ToList();
+}
+
+
+<!-- Main Container -->
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<main class="container flex flex-col lg:flex-row gap-5 mx-auto px-4 md:px-6 lg:px-8 py-12">
+	<!-- Desktop Sidebar -->
+	<div class="w-[30%] h-full hidden lg:flex flex-col gap-5">
+		<div class="container bg-[#F7F7F7] py-12 rounded-[8px]">
+
+			<nav>
+				<ul class="about-us-nav main-nav">
+
+					@if (childNodes?.Any() == true)
+					{
+						foreach (var node in childNodes)
+						{
+							<li>
+								<a href="#"
+								   class="text-aeblack-900 no-underline active"
+								   onclick="getContent(@node.Id); return false;">
+									
+									<h5 class="text-[20px]">@node.Name</h5>
+								</a>
+							</li>
+						}
+					}
+					else
+					{
+						<li>Not found pages</li>
+					}
+
+
+				</ul>
+			</nav>
+		</div>
+
+		<div class="container py-12">
+			@await Html.GetBlockGridHtmlAsync(Model, "mainContent")
+			
+			@* <h5>Related Content</h5> *@
+			@* <nav> *@
+			@* 	<ul class="about-us-nav"> *@
+					
+					
+
+
+			@* 	</ul> *@
+			@* </nav> *@
+		</div>
+	</div>
+
+
+
+
+
+ 	<!-- Mobile Slider -->
+	@* <div class="block lg:hidden ">
+		<nav>
+			<ul class="mobile-about-us-nav flex overflow-scroll text-center items-center justify-start gap-5">
+				
+				@if (childNodes?.Any() == true)
+				{
+					foreach (var node in childNodes)
+					{
+						<li>
+							<a href="#"
+							   class="text-aeblack-900  no-underline"
+							   onclick="getContent(@node.Id); return false;">
+
+								<h5 class="text-[16px] leading-none">@node.Name</h5>
+							</a>
+						</li>
+					}
+				}
+				else
+				{
+					<li>Not found pages</li>
+				}
+
+			</ul>
+			
+			<ul class="mobile-about-us-nav flex overflow-scroll items-center justify-start">
+				<li>
+					<a href="exams.html"
+					   class="text-aeblack-900 no-underline pt-2 my-2 px-5 flex items-center leading-none text-center">
+						Exam
+						Registration
+					</a>
+				</li>
+				<li>
+					<a href=""
+					   class="text-aeblack-900 no-underline pt-2 my-2 px-5 flex items-center leading-none text-center">
+						EMREE
+						Registration
+					</a>
+				</li>
+				<li>
+					<a href=""
+					   class="text-aeblack-900 no-underline pt-2 my-2 px-5 flex items-center leading-none text-center">
+						EDREE
+						Registation
+					</a>
+				</li>
+				<li>
+					<a href=""
+					   class="text-aeblack-900 no-underline pt-2 my-2 px-5 flex items-center leading-none text-center">
+						EPREE
+						Registration
+					</a>
+				</li>
+				<li>
+					<a href=""
+					   class="text-aeblack-900 no-underline pt-2 my-2 px-5 flex items-center leading-none text-center">
+						Emirati
+						Board
+						Registration
+					</a>
+				</li>
+			</ul>
+ 
+		</nav>
+	</div>
+
+ *@
+	<!-- Content -->
+	<div class="w-full lg:w-[70%] h-full" id="sidebar-content">
+
+		@await Html.GetBlockGridHtmlAsync(Model?.Children?.FirstOrDefault()!, "mainContent")
+	</div>
+</main>
+
+
+<script>
+	function getContent(nodeId) {
+		fetch(`/umbraco/api/sidebar/getcontent?id=${nodeId}`)
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById("sidebar-content").innerHTML = html;
+			})
+			.catch(error => console.error("Error fetching content:", error));
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
