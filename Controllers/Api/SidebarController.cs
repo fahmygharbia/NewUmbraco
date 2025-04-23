@@ -19,15 +19,27 @@ public class SidebarController : UmbracoApiController
         var content = context.UmbracoContext.Content?.GetById(id);
         if (content == null) return NotFound();
 
-        return new ViewResult
+        var isNewPage = content.Value<bool>("newPage");
+
+        if (isNewPage)
         {
-            ViewName = "~/Views/Partials/_BlockGridContent.cshtml",
-            ViewData = new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<IPublishedContent>(
-                new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(),
-                new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary())
+            var url = content.Url();
+            return Redirect(url);
+        }
+        else
+        {
+            return new ViewResult
             {
-                Model = content
-            }
-        };
+                ViewName = "~/Views/Partials/_BlockGridContent.cshtml",
+                ViewData = new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<IPublishedContent>(
+               new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(),
+               new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary())
+                {
+                    Model = content
+                }
+            };
+        }
+
+
     }
 }
