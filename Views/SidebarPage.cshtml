@@ -2,7 +2,7 @@
 
 
 @{
-	Layout = "SidebarLayout";
+    Layout = "Main.cshtml";
 
 	var rootNode = Umbraco.ContentAtRoot().FirstOrDefault();
 	var sidebarNode = rootNode?.Children.FirstOrDefault(x => x.Name == "Sidebar");
