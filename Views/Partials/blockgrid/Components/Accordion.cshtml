@@ -3,30 +3,30 @@
 
 
 
-		<div class="accordion-item">
-			<div class="accordion-title" id="aegov-accordion-head-1">
-				<button type="button" data-accordion-target="#aegov-accordion-body-1" aria-expanded="false"
-						aria-controls="aegov-accordion-body-1">
-					
-						<span>@Model.Content.Title</span>
+<div class="accordion-item">
+	<div class="accordion-title" id="aegov-accordion-head-1">
+		<button type="button" data-accordion-target="#aegov-accordion-body-1" aria-expanded="false"
+				aria-controls="aegov-accordion-body-1">
 
-					<svg data-accordion-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-						<rect width="256" height="256" fill="none" />
-						<polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor"
-								  stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-					</svg>
-				</button>
-			</div>
-			<div class="accordion-content hidden" id="aegov-accordion-body-1"
-				 aria-labelledby="aegov-accordion-head-1">
-				<div class="accordion-content-body flex flex-col gap-5">
-					<div class="flex flex-col gap-3">
+			<span>@Model.Content.Title</span>
 
-							@Model.Content.Body
-						
-					</div>
-				</div>
+			<svg data-accordion-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+				<rect width="256" height="256" fill="none" />
+				<polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor"
+						  stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+			</svg>
+		</button>
+	</div>
+	<div class="accordion-content hidden" id="aegov-accordion-body-1"
+		 aria-labelledby="aegov-accordion-head-1">
+		<div class="accordion-content-body flex flex-col gap-5">
+			<div class="flex flex-col gap-3">
+
+				@Model.Content.Body
+
 			</div>
 		</div>
+	</div>
+</div>
 
 

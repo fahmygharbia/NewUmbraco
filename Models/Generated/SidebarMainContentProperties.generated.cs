@@ -18,24 +18,24 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	// Mixin Content Type with alias "sidebarProperties"
-	/// <summary>Sidebar Properties</summary>
-	public partial interface ISidebarProperties : IPublishedElement
+	// Mixin Content Type with alias "sidebarMainContentProperties"
+	/// <summary>Sidebar Main Content Properties</summary>
+	public partial interface ISidebarMainContentProperties : IPublishedElement
 	{
-		/// <summary>Sidebar Navigation</summary>
+		/// <summary>Sidebar Main Content</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarNavigation { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarMainContent { get; }
 	}
 
-	/// <summary>Sidebar Properties</summary>
-	[PublishedModel("sidebarProperties")]
-	public partial class SidebarProperties : PublishedElementModel, ISidebarProperties
+	/// <summary>Sidebar Main Content Properties</summary>
+	[PublishedModel("sidebarMainContentProperties")]
+	public partial class SidebarMainContentProperties : PublishedElementModel, ISidebarMainContentProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
-		public new const string ModelTypeAlias = "sidebarProperties";
+		public new const string ModelTypeAlias = "sidebarMainContentProperties";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
@@ -44,14 +44,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<SidebarProperties, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<SidebarMainContentProperties, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public SidebarProperties(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public SidebarMainContentProperties(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -60,16 +60,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Sidebar Navigation: Use this property to build up the content for the sidebar navigation.
+		/// Sidebar Main Content: Use this property to build up the content for the page
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("sidebarNavigation")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarNavigation => GetSidebarNavigation(this, _publishedValueFallback);
+		[ImplementPropertyType("sidebarMainContent")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarMainContent => GetSidebarMainContent(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Sidebar Navigation</summary>
+		/// <summary>Static getter for Sidebar Main Content</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel GetSidebarNavigation(ISidebarProperties that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(publishedValueFallback, "sidebarNavigation");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel GetSidebarMainContent(ISidebarMainContentProperties that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(publishedValueFallback, "sidebarMainContent");
 	}
 }

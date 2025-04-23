@@ -1,0 +1,25 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.LinksWithTitle>>
+
+
+<div class="container py-12">
+	<h5 class="text-[20px]">@Model.Content.Title</h5>
+	<nav>
+		<ul class="about-us-nav">
+
+			@foreach (var link in Model.Content.Links!)
+			{
+				<li>
+					<a href="@link.Url" class="text-aeblack-900 no-underline my-2 flex items-center" target="@link.Target">
+						@link.Name 
+					</a>
+				</li>
+			}
+
+		</ul>
+	</nav>
+</div>
+
+
+
+	
