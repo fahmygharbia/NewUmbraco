@@ -1,0 +1,119 @@
+﻿@inherits UmbracoViewPage<ISEoproperties>
+
+@if (Model == null) return;
+
+<link rel="stylesheet" href="~/css/styles.css">
+ <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="~/css/main.bundle.js"></script>
+<script>
+    let zoomLevel = 1; // Default zoom level
+    let highlightLinks = false;
+    let isMonochrome = false;
+    let isHighContrast = false;
+    let isBrightHighContrast = false;
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        //   applyZoom(); // Ensure zoom is applied when page loads
+    });
+
+    const html = document.querySelector('html');
+
+
+    // ✅ Function to Apply Zoom
+    const applyZoom = () => {
+        document.body.style.transform = `scale(${zoomLevel})`;
+        document.body.style.transformOrigin = "top left";
+        updateScrollBehavior();
+    };
+
+    // ✅ Zoom In Function
+    const zoomIn = () => {
+        if (zoomLevel < 2) {
+            zoomLevel += 0.1;
+            applyZoom();
+        }
+    };
+
+    // ✅ Zoom Out Function
+    const zoomOut = () => {
+        if (zoomLevel > 0.5) {
+            zoomLevel -= 0.1;
+            applyZoom();
+        }
+    };
+
+    // ✅ Update Scroll Behavior (Prevents horizontal overflow issues)
+    const updateScrollBehavior = () => {
+        document.documentElement.style.overflowX = zoomLevel > 1 ? "auto" : "hidden";
+    };
+
+    // ✅ Highlight Links
+    const toggleHighlightLinks = () => {
+        highlightLinks = !highlightLinks;
+        document.querySelectorAll("a").forEach(link => {
+            link.style.backgroundColor = highlightLinks ? "black" : "";
+            link.style.color = highlightLinks ? "yellow" : "";
+        });
+    };
+
+    // ✅ Clear Highlighted Links
+    const clearHighlightLinks = () => {
+        document.querySelectorAll("a").forEach(link => {
+            link.style.backgroundColor = "";
+            link.style.color = "";
+        });
+    };
+
+    // ✅ Apply Filters (Monochrome, High Contrast, Bright Contrast)
+    const applyFilter = () => {
+        let filter = "";
+        if (isMonochrome) filter = "grayscale(1)";
+        if (isHighContrast) filter = "contrast(2)";
+        if (isBrightHighContrast) filter = "contrast(2) brightness(1.5)";
+        document.body.style.filter = filter || "none";
+    };
+
+    // ✅ Toggle Monochrome
+    const toggleMonochrome = () => {
+        isMonochrome = !isMonochrome;
+        isHighContrast = false;
+        isBrightHighContrast = false;
+        applyFilter();
+    };
+
+    // ✅ Toggle High Contrast
+    const toggleHighContrast = () => {
+        isHighContrast = !isHighContrast;
+        isMonochrome = false;
+        isBrightHighContrast = false;
+        applyFilter();
+    };
+
+    // ✅ Toggle Bright High Contrast
+    const toggleBrightHighContrast = () => {
+        isBrightHighContrast = !isBrightHighContrast;
+        isHighContrast = false;
+        isMonochrome = false;
+        applyFilter();
+    };
+
+    // ✅ Reset All Styles
+    const resetAll = () => {
+        document.body.style.transform = "none";
+        document.body.style.transformOrigin = "initial";
+        document.documentElement.style.overflowX = "hidden";
+        document.body.style.filter = "none";
+
+        clearHighlightLinks();
+        isMonochrome = false;
+        isHighContrast = false;
+        isBrightHighContrast = false;
+    };
+
+</script>
