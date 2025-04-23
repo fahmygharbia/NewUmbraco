@@ -8,13 +8,6 @@
   </area>
   
   // Edit login text in login page
-  <area alias="login">
-    <key alias="greeting0">Welcome To Fahmy Gharbia</key>
-    <key alias="greeting1">Welcome To Fahmy Gharbia</key>
-    <key alias="greeting2">Welcome To Fahmy Gharbia</key>
-    <key alias="greeting3">Welcome To Fahmy Gharbia</key>
-    <key alias="greeting4">Welcome To Fahmy Gharbia</key>
-    <key alias="greeting5">Welcome To Fahmy Gharbia</key>
-    <key alias="greeting6">Welcome To Fahmy Gharbia</key>
+  <area alias="login"> 
   </area>
 </language>

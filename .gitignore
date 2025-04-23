@@ -362,3 +362,22 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /umbraco/Data/TEMP/MainDom_fdc350c3887b4f1a447f06eb1b8d8bf8790b336d.lock
+
+# Temp folder containing Examine indexes, NuCache, MediaCache, etc.
+/umbraco/Data/TEMP/
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+ 
