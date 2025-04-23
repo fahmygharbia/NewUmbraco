@@ -1,25 +1,18 @@
-﻿<header class="aegov-header aegov-header-top-bar">
+﻿@inherits UmbracoViewPage
+
+@{
+    var siteSettings = Model.GetSiteSettings();
+    if (siteSettings is null) return;
+}
+
+
+<header class="aegov-header aegov-header-top-bar">
     <div class="header-desktop hidden lg:block">
         <div class="header-top py-3">
             <div class="container">
                 <div class="lg:flex lg:items-center lg:justify-between">
-                    <div class="header-logo logos">
-                        <div class="logo-item">
-                            <a href="#" class="logo flex items-center flex-row gap-3 no-underline">
-                                <img src="../images/NIHS-logo.svg" alt="logo"> <span class="text-xl font-bold text-[#232528] max-w-[20ch]">
-                                    National Institute for Health
-                                    Specialties (NIHS)
-                                </span>
-                            </a>
-                        </div>
-                        <div class="logo-item">
-                            <a href="#" data-modal-target="modal-gold-star" data-modal-toggle="modal-gold-star"
-                               class="block">
-                                <img src="https://designsystem.gov.ae/img/global-star.png" alt="logo"
-                                     class="secondary-logo"> <span class="sr-only">Gold star Logo</span>
-                            </a>
-                        </div>
-                    </div>
+                    <!-- _Search -->
+                    @await Html.PartialAsync("_Search")
                     <div class="header-top-right flex flex-wrap items-center">
                         <form action="#" method="post">
                             <div class="aegov-form-control w-64 xl:w-80 ">
@@ -50,7 +43,7 @@
                         <div class="menu-main-menu-container">
                             <ul class="menu nav-menu lg:flex lg:items-center lg:gap-1 xl:gap-2">
                                 <li class="menu-item lg:inline-flex lg:items-center has-link-icon">
-                                    <a href="index.html" class="hover:!text-primary-800 hover:!border-primary-800">
+                                    <a href="~/" class="hover:!text-primary-800 hover:!border-primary-800">
                                         <svg class="text-inherit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
                                             <rect width="256" height="256" fill="none" />
                                             <path d="M152,208V160a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v48a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V115.54a8,8,0,0,1,2.62-5.92l80-75.54a8,8,0,0,1,10.77,0l80,75.54a8,8,0,0,1,2.62,5.92V208a8,8,0,0,1-8,8H160A8,8,0,0,1,152,208Z"
@@ -60,57 +53,11 @@
                                         <span>Home</span>
                                     </a>
                                 </li>
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="about.html"
-                                       class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        About
-                                    </a>
-                                </li>
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="accreditation.html"
-                                       class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        Accreditation
-                                    </a>
-                                </li>
 
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="assessment.html"
-                                       class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        Assessment
-                                    </a>
-                                </li>
+                                 
+                                @await Html.GetBlockGridHtmlAsync(siteSettings, "mainNavigation")
 
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="board-examination-home.html"
-                                       class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        Examination
-                                    </a>
-                                </li>
-
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="training.html" class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        Training
-                                    </a>
-                                </li>
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="e-services.html" class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        E-Services
-                                    </a>
-                                </li>
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="news.html" class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        Media Center
-                                    </a>
-                                </li>
-                                <li class="menu-item text-center lg:inline-flex lg:items-center group">
-                                    <a href="contact-us.html"
-                                       class="group-hover:!text-primary-800 group-hover:!border-primary-800">
-                                        Contact Us
-                                    </a>
-                                </li>
-
-
-
+                               
                             </ul>
                         </div>
                     </nav>
@@ -210,23 +157,8 @@
         <div class="header-top py-2">
             <div class="container">
                 <div class="max-lg:flex max-lg:items-center justify-between">
-                    <div class="header-logo logos">
-                        <div class="logo-item">
-                            <a href="#" class="logo flex items-center flex-row gap-3 no-underline">
-                                <img src="../images/NIHS-logo.svg" alt="logo"> <span class="text-md font-bold text-[#232528] max-w-[20ch]">
-                                    National Institute for Health
-                                    Specialties (NIHS)
-                                </span>
-                            </a>
-                        </div>
-                        <div class="logo-item">
-                            <a href="#" data-modal-target="modal-gold-star" data-modal-toggle="modal-gold-star"
-                               class="block">
-                                <img src="https://designsystem.gov.ae/img/global-star.png" alt="logo"
-                                     class="secondary-logo"> <span class="sr-only">Gold star Logo</span>
-                            </a>
-                        </div>
-                    </div>
+                    <!-- _Search -->
+                    @await Html.PartialAsync("_Search")
                     <div class="header-top-right">
                         <div>
                             <div class="flex items-center gap-3">
