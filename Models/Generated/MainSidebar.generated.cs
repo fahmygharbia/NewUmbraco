@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Main Sidebar</summary>
 	[PublishedModel("mainSidebar")]
-	public partial class MainSidebar : PublishedContentModel, IContentProperties
+	public partial class MainSidebar : PublishedContentModel, ISidebarMainContentProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,11 +50,18 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Main Content: Use this property to build up the content for the page
+		/// New Page: Check true if you want to open page without sidebar.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
+		[ImplementPropertyType("newPage")]
+		public virtual bool NewPage => this.Value<bool>(_publishedValueFallback, "newPage");
+
+		///<summary>
+		/// Sidebar Main Content: Use this property to build up the content for the page
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainContent")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel MainContent => global::Umbraco.Cms.Web.Common.PublishedModels.ContentProperties.GetMainContent(this, _publishedValueFallback);
+		[ImplementPropertyType("sidebarMainContent")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarMainContent => global::Umbraco.Cms.Web.Common.PublishedModels.SidebarMainContentProperties.GetSidebarMainContent(this, _publishedValueFallback);
 	}
 }

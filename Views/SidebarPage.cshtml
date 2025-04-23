@@ -52,7 +52,7 @@
 		</div>
 
 		<div class="container py-12">
-			@await Html.GetBlockGridHtmlAsync(Model, "mainContent")
+			@await Html.GetBlockGridHtmlAsync(Model, "sidebarNavigation")
 			
 			@* <h5>Related Content</h5> *@
 			@* <nav> *@
@@ -141,8 +141,8 @@
  *@
 	<!-- Content -->
 	<div class="w-full lg:w-[70%] h-full" id="sidebar-content">
-
-		@await Html.GetBlockGridHtmlAsync(Model?.Children?.FirstOrDefault()!, "mainContent")
+		
+		@await Html.GetBlockGridHtmlAsync(Model?.Children?.FirstOrDefault()!, "sidebarMainContent")
 	</div>
 </main>
 
