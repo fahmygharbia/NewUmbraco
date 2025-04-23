@@ -50,6 +50,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// New Page: Check true if you want to open page without sidebar.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
+		[ImplementPropertyType("newPage")]
+		public virtual bool NewPage => this.Value<bool>(_publishedValueFallback, "newPage");
+
+		///<summary>
 		/// Main Content: Use this property to build up the content for the page
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
