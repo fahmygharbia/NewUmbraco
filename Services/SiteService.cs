@@ -38,8 +38,7 @@ public class SiteService : ISiteService
     }
     public PageContent GetContent(int id)
     {
-        using var context = _umbracoContextFactory.EnsureUmbracoContext();
-        var content = (MainSidebar)context.UmbracoContext.Content?.GetById(id);
+        var content = (MainSidebar)GetContentAsPublishContent(id);
         if (content == null) return null;
         var isNewPage = content.NewPage;
 
@@ -47,6 +46,20 @@ public class SiteService : ISiteService
         return new PageContent(IsNewPage: isNewPage, ReturnURl:
             isNewPage ? content.Url() : string.Empty,
             Model: content);
+    }
+    public MainSidebar GetSideBarContent(int id)
+    {
+        var content = GetContentAsPublishContent(id);
+        if (content == null) return null;
+        return content.SafeCast<MainSidebar>();
+    }
+
+    public IPublishedContent? GetContentAsPublishContent(int id)
+    {
+        using var context = _umbracoContextFactory.EnsureUmbracoContext();
+        var content = context.UmbracoContext.Content?.GetById(id);
+        if (content == null) return null;
+        return content;
     }
     private IPublishedContent GetSiteSectionRoot(string ModelTypeAlias)
     {

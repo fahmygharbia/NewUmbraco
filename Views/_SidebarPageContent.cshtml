@@ -1,0 +1,10 @@
+﻿@model MainSidebar
+
+@if (Model != null)
+{
+    @await Html.GetBlockGridHtmlAsync(Model, "mainContent")
+}
+else
+{
+    <div class="no-content">No content available</div>
+}

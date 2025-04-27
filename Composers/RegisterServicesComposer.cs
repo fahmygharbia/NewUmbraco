@@ -1,4 +1,5 @@
-﻿using NewUmbraco.Services;
+﻿using NewUmbraco.Controllers.Api;
+using NewUmbraco.Services;
 
 using Umbraco.Cms.Core.Composing;
 
@@ -10,5 +11,6 @@ public class RegisterServicesComposer : IComposer
     {
         builder.Services.AddTransient<ISearchService, SearchService>();
         builder.Services.AddSingleton<ISiteService, SiteService>();
+        builder.Services.AddTransient<ViewRenderer>();
     }
 }
