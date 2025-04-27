@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    if (Model?.Areas.Any() != true) { return; }
+}
+
+
+
+
+<div id="SampleLayout-Tabs-07" class="py-4">
+	<div class="tab-content" role="tabpanel" id="body-item1-sample-07">
+		<div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
+
+			@foreach (var area in Model.Areas)
+			{
+				@await Html.GetBlockGridItemAreaHtmlAsync(area)
+			}
+
+		</div>
+
+	</div>
+
+</div>
