@@ -4,15 +4,14 @@
 @{
     Layout = "Main";
 
-    // Cache root node lookup
-    var childNodes = _ISiteService.GetSideBarChildNodes();
+     var childNodes = _ISiteService.GetSideBarChildNodes();
 
 }
 
 
 <main class="container flex flex-col lg:flex-row gap-5 mx-auto px-4 md:px-6 lg:px-8 py-12">
     <!-- Desktop Sidebar -->
-    <div class="w-[30%] h-full hidden lg:flex flex-col gap-5">
+    <div class="w-[30%] h-full hidden lg:flex flex-col gap-5" id="sideMenu">
         <div class="container bg-[#F7F7F7] py-12 rounded-[8px]">
             <nav>
                 <ul class="about-us-nav main-nav">
@@ -23,7 +22,8 @@
                             <li>
                                 <a href="#"
                                    class="text-aeblack-900 no-underline active"
-                                   onclick="loadContent(@node.Id, @node.IsNewPage.ToString().ToLower(), @(!string.IsNullOrEmpty( node.ReturnURL )?node.ReturnURL: "null"), event)">
+                                   onclick="loadContent(@node.Id, @node.IsNewPage.ToString().ToLower(),
+                            '@Html.Raw(!string.IsNullOrEmpty(node.ReturnURL) ? node.ReturnURL.Replace("'", "\\'") : "null")', event)">
 
                                     <h5 class="text-[20px]">@node.Name</h5>
                                 </a>
@@ -37,11 +37,6 @@
                 </ul>
             </nav>
         </div>
-
-        <!-- Block Grid HTML for Main Content (Sidebar Content) -->
-        @*    <div class="container py-12">
-            @await Html.GetBlockGridHtmlAsync(Model, "mainContent")
-        </div> *@
     </div>
 
     <!-- Content Area -->
@@ -57,14 +52,8 @@
 </main>
 
 <script>
-        async function loadContent(nodeId, isNewPage, returnUrl, event) {
+           async function loadContent(nodeId, isNewPage, returnUrl, event) {
         event.preventDefault();
-
-        if (isNewPage && returnUrl !== "null") {
-            window.location.href = returnUrl;
-            return;
-        }
-
         try {
             const response = await fetch(`/api/sidebar/content/${nodeId}`);
 
@@ -73,7 +62,15 @@
             }
 
             const html = await response.text();
-            document.getElementById("sidebar-content").innerHTML = html;
+
+            // If it's a new page, display the content as the full page and hide the sidebar
+            if (isNewPage) {
+                document.querySelector("main").classList.add("full-content");  // Add class to modify layout
+                document.getElementById("sidebar-content").innerHTML = html;  // Set the content in the content area
+            document.getElementById("sideMenu").style.display = "none";  // Hide the sidebar
+            } else {
+                document.getElementById("sidebar-content").innerHTML = html;  // Normal content load with sidebar
+            }
 
         } catch (error) {
             console.error("Error loading content:", error);
@@ -85,6 +82,7 @@
             `;
         }
     }
+
 
 
 
