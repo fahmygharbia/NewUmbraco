@@ -48,20 +48,33 @@
 </main>
 
 <script>
-     async function loadContent(nodeId, IsNewPage,ReturnURL,event)
-     {
-         debugger;
+       async function loadContent(nodeId, isNewPage, returnUrl, event) {
         event.preventDefault();
 
-          if (IsNewPage) {
-        window.location.href = ReturnURL;
-        return;
+        if (isNewPage) {
+            window.location.href = returnUrl;
+            return;
         }
 
-        // Load content on demand
-        const response = await fetch(`?handler=Content&id=${nodeId}`);
-        document.getElementById("sidebar-content").innerHTML = await response.text();
+        try {
+            const response = await fetch(`/api/sidebar/content/${nodeId}`);
 
+            if (response.ok) {
+                const result = await response.json();
 
+                // Handle redirect if needed (though your check above should prevent this)
+                if (result.redirectUrl) {
+                    window.location.href = result.redirectUrl;
+                    return;
+                }
+
+                // Handle HTML content
+                document.getElementById("sidebar-content").innerHTML = result;
+            } else {
+                console.error("Failed to load content");
+            }
+        } catch (error) {
+            console.error("Error loading content:", error);
+        }
     }
 </script>
