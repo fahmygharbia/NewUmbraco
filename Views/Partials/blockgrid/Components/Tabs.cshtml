@@ -1,0 +1,302 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Tabs>>
+
+@{
+	const int TITLE_AREA = 0;
+	const int TAB_AREA = 1;
+	var tabArea = Model.Areas.ElementAt(TAB_AREA);
+}
+
+<h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
+
+
+<div class="aegov-tab tab-pills">
+	<ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
+
+		@foreach (var item in tabArea)
+		{
+			var tabTitles = item.Content as Tab;
+			var title = tabTitles?.Title;
+
+
+			<li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-@title" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">@title</a></li>
+		}
+
+
+	</ul>
+</div>
+
+
+
+<div id="SampleLayout-Tabs-07" class="py-4">
+
+	@foreach (var item in tabArea)
+	{
+		await Html.PartialAsync("blockgrid/Components/Tab", item);
+
+
+	}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
+
+<div class="aegov-tab tab-pills">
+	<ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
+
+		@foreach (var item in tabArea)
+		{
+			var tabTitles = item.Content as Tab;
+			var title = tabTitles?.Title;
+
+			<li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-07" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">@title</a></li>
+
+
+		}
+
+
+	</ul>
+</div>
+
+
+<div id="SampleLayout-Tabs-07" class="py-4">
+	<div class="tab-content" role="tabpanel" id="body-item1-sample-07">
+		<div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
+
+			@foreach(var item in tabArea)
+			{
+				<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (1).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		
+			
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (2).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (3).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (1).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tab-content" role="tabpanel" id="body-item2-sample-07">
+		<div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (1).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (2).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (3).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="aegov-card card-news">
+					<a href="#">
+						<img src="../images/ImageContainer (1).png" alt="TDRA empowers youth for a sustainable future">
+					</a>
+					<div class="card-content">
+						<div class="custom-divide custom-divide-sm flex flex-wrap">
+							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
+							<a href="#" class="text-sm font-normal">Press release</a>
+						</div>
+						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
+						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
+						<a href="#" class="aegov-link">
+							View details
+							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tab-content" role="tabpanel" id="body-item3-sample-07">
+		<p>This is the content area for the tab "category 2"</p>
+	</div>
+	<div class="tab-content" role="tabpanel" id="body-item4-sample-07">
+		<p>This is the content area for the tab "category 3"</p>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
