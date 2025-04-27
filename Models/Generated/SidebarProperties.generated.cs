@@ -22,10 +22,10 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Sidebar Properties</summary>
 	public partial interface ISidebarProperties : IPublishedElement
 	{
-		/// <summary>Main Content</summary>
+		/// <summary>Sidebar Navigation</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel MainContent { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarNavigation { get; }
 	}
 
 	/// <summary>Sidebar Properties</summary>
@@ -60,16 +60,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Main Content: Use this property to build up the content for the page
+		/// Sidebar Navigation: Use this property to build up the content for the sidebar navigation.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainContent")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel MainContent => GetMainContent(this, _publishedValueFallback);
+		[ImplementPropertyType("sidebarNavigation")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarNavigation => GetSidebarNavigation(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Main Content</summary>
+		/// <summary>Static getter for Sidebar Navigation</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel GetMainContent(ISidebarProperties that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(publishedValueFallback, "mainContent");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel GetSidebarNavigation(ISidebarProperties that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(publishedValueFallback, "sidebarNavigation");
 	}
 }

@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Sidebar Page</summary>
 	[PublishedModel("sidebarPage")]
-	public partial class SidebarPage : PublishedContentModel, ILinks, ISEoproperties, ISidebarProperties, IVisibilityProperties
+	public partial class SidebarPage : PublishedContentModel, ISEoproperties, ISidebarProperties, IVisibilityProperties
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -80,12 +80,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string MetaTitle => global::Umbraco.Cms.Web.Common.PublishedModels.SEoproperties.GetMetaTitle(this, _publishedValueFallback);
 
 		///<summary>
-		/// Main Content: Use this property to build up the content for the page
+		/// Sidebar Navigation: Use this property to build up the content for the sidebar navigation.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainContent")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel MainContent => global::Umbraco.Cms.Web.Common.PublishedModels.SidebarProperties.GetMainContent(this, _publishedValueFallback);
+		[ImplementPropertyType("sidebarNavigation")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.SidebarProperties.GetSidebarNavigation(this, _publishedValueFallback);
 
 		///<summary>
 		/// Hide: Site this to true if you want to hide this page from search results and list pages
