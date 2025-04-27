@@ -7,6 +7,8 @@
 	var tabArea = Model.Areas.ElementAt(TAB_AREA);
 }
 
+
+
 <h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
 
 
@@ -32,12 +34,52 @@
 
 	@foreach (var item in tabArea)
 	{
-		await Html.PartialAsync("blockgrid/Components/Tab", item);
+		@* await Html.PartialAsync("blockgrid/Components/Tab", item); *@
 
+		var content = item.Content as Tab;
+
+		<div class="tab-content" role="tabpanel" id="body-item1-sample-@content!.Title">
+
+			<div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
+
+				@foreach (BlockListItem<ContentModels.Card> card in content.Cards!)
+				{
+
+					@* await Html.PartialAsync("blockgrid/Components/Card", card); *@
+
+					<div>
+
+						<div class="aegov-card card-news">
+							<a href="#">
+								<img class="lazyload"
+									 data-srcset=" @Url.GetSrcSetUrls(card.Content.Image, 400, 290)" src="@card.Content.Image.GetCropUrl(40, 29, quality: 40)" alt="@card.Content.Image.GetAltText()" width="400" height="290" sizes="auto">
+							</a>
+
+							<div class="card-content">
+								<div class="custom-divide custom-divide-sm flex flex-wrap">
+									<div class="text-aeblack-600 text-sm font-normal">  @card.Content.Date.ToString("dd/MM/yyyy")</div>
+
+									@* <a href="#" class="text-sm font-normal">Press release</a> *@
+								</div>
+								<h5 class="max-md:text-lg line-clamp-3">@card.Content.Title</h5>
+								<p class="line-clamp-3">@card.Content.ShortDescription</p>
+								<a href="@card.Content.Link?.Url" class="aegov-link">
+									@card.Content.Link?.Name
+									<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+								</a>
+							</div>
+						</div>
+
+					</div>
+
+
+
+				}
+
+			</div>
+		</div>
 
 	}
-
-
 
 </div>
 
@@ -68,7 +110,7 @@
 
 
 
-
+@* 
 <h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
 
 <div class="aegov-tab tab-pills">
@@ -95,32 +137,17 @@
 
 			@foreach(var item in tabArea)
 			{
-				<div>
-				<div class="aegov-card card-news">
-					<a href="#">
-						<img src="../images/ImageContainer (1).png" alt="TDRA empowers youth for a sustainable future">
-					</a>
-					<div class="card-content">
-						<div class="custom-divide custom-divide-sm flex flex-wrap">
-							<div class="text-aeblack-600 text-sm font-normal">11th Jun 20223</div>
-							<a href="#" class="text-sm font-normal">Press release</a>
-						</div>
-						<h5 class="max-md:text-lg line-clamp-3">TDRA empowers youth for a sustainable future through "Digital Skills Forum" on International Youth Day</h5>
-						<p class="line-clamp-3">In alignment with the UAE government's visionary theme for 2023, "Today for Tomorrow," the forum epitomized TDRA's dedication to fostering the next generation of leaders and visionaries who will drive sustainable growth in the digital era.</p>
-						<a href="#" class="aegov-link">
-							View details
-							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
-						</a>
-					</div>
-				</div>
-			</div>
-		
-			
+				var contentTab = item.Content as Tab;
+
+				foreach(BlockListItem<ContentModels.Card> card in contentTab!.Cards!)
+				{
+					await Html.PartialAsync("blockgrid/Components/Card", card);
+				}			
 			}
-			
-			
-			
-			
+
+
+
+
 			
 			
 			
@@ -190,8 +217,8 @@
 							View details
 							<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
 						</a>
-					</div>
-				</div>
+		</div>
+	</div>
 			</div>
 		</div>
 	</div>
@@ -286,7 +313,9 @@
 
 
 
+</div>
 
+ *@
 
 
 
