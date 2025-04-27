@@ -22,7 +22,8 @@
                             <li>
                                 <a href="#"
                                    class="text-aeblack-900 no-underline active"
-                                   onclick="loadContent(@node.Id,@node.IsNewPage, @node.ReturnURL, event)">
+                                   onclick="loadContent(@node.Id, @node.IsNewPage.ToString().ToLower(), @(!string.IsNullOrEmpty( node.ReturnURL )?node.ReturnURL: "null"), event)">
+
                                     <h5 class="text-[20px]">@node.Name</h5>
                                 </a>
                             </li>
@@ -48,10 +49,10 @@
 </main>
 
 <script>
-       async function loadContent(nodeId, isNewPage, returnUrl, event) {
+          async function loadContent(nodeId, isNewPage, returnUrl, event) {
         event.preventDefault();
 
-        if (isNewPage) {
+        if (isNewPage && returnUrl !== "null") {
             window.location.href = returnUrl;
             return;
         }
@@ -62,14 +63,8 @@
             if (response.ok) {
                 const result = await response.json();
 
-                // Handle redirect if needed (though your check above should prevent this)
-                if (result.redirectUrl) {
-                    window.location.href = result.redirectUrl;
-                    return;
-                }
-
-                // Handle HTML content
-                document.getElementById("sidebar-content").innerHTML = result;
+                // Replace the content of the sidebar content area
+                document.getElementById("sidebar-content").innerHTML = result.HtmlContent;
             } else {
                 console.error("Failed to load content");
             }
@@ -77,4 +72,5 @@
             console.error("Error loading content:", error);
         }
     }
+
 </script>

@@ -30,7 +30,7 @@ public class SiteService : ISiteService
          Id: x.Id,
          Name: x.Name,
          IsNewPage: x.NewPage,
-         ReturnURL: x.NewPage ? x.Url() : ""
+         ReturnURL: x.NewPage ==true? x.Url() : string.Empty
      ))
      .AsEnumerable();
 

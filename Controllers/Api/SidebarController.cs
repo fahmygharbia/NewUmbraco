@@ -1,49 +1,79 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 using NewUmbraco.Services;
 
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 
-public class SidebarController : UmbracoApiController
+[ApiController]
+[Route("api/sidebar")]
+public class SidebarController : ControllerBase
 {
-    private readonly IUmbracoContextFactory _context;
-   // private readonly ISiteService _siteService;
+    private readonly ISiteService _siteService;
 
-    public SidebarController(IUmbracoContextFactory contextFactory )
+    public SidebarController(ISiteService siteService)
     {
-        _context = contextFactory;
-      //  _siteService = siteService;
-
+        _siteService = siteService;
     }
 
-    //[HttpGet]
-    // public IActionResult GetContent(int id)
+    [HttpGet("content/{nodeId:int}")]
+    public IActionResult GetSidebarContent(int nodeId)
+    {
+        try
+        {
+            var node = _siteService.GetContent( nodeId);
+
+            if (node == null)
+                return NotFound("Node not found");
+
+            // Return HTML or JSON based on your requirements
+            return Ok(new { HtmlContent =node.Model });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error: {ex.Message}");
+        }
+    }
+
+
+
+
+ 
+    //[HttpGet("content/{nodeId:int}")]
+    //public IActionResult GetSidebarContent_2(int nodeId)
     //{
-    //    var pageContent = _siteService.GetContent(id);
-
-    //    if (pageContent == null)
+    //    try
     //    {
-    //        return NotFound();
+    //        var node = _siteService.GetContent(nodeId);
+
+    //        if (node == null)
+    //            return NotFound("Node not found");
+
+    //        // Use Umbraco's PartialViewRenderer to render Block Grid HTML
+    //        string htmlContent = RenderBlockGridHtml(node);
+
+    //        return Ok(new { HtmlContent = htmlContent });
     //    }
-
-    //    return Json(new
+    //    catch (Exception ex)
     //    {
-    //        isNewPage = pageContent.IsNewPage,
-    //        returnUrl = pageContent.ReturnURl
-    //    });
+    //        return StatusCode(500, $"Error: {ex.Message}");
+    //    }
     //}
 
-    //[HttpGet]
-    //public IActionResult GetContentHtml(int id)
+    //// Helper method to render Block Grid HTML
+    //private string RenderBlockGridHtml(IPublishedContent node)
     //{
-    //    var pageContent = _siteService.GetContent(id);
-
-    //    if (pageContent == null || pageContent.IsNewPage)
+    //    using (var scope = _context.EnsureUmbracoContext())
     //    {
-    //        return NotFound();
-    //    }
+    //        var htmlHelper = new HtmlHelper(scope.UmbracoContext);
 
-    //    return PartialView("~/Views/Partials/_BlockGridContent.cshtml", pageContent.Model);
+    //        // Render the Block Grid HTML
+    //        return htmlHelper.GetBlockGridHtml(node, "mainContent").ToHtmlString();
+    //    }
     //}
+
 }
+
+
+
