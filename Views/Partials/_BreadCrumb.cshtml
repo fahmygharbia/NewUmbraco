@@ -1,0 +1,19 @@
+﻿@inherits UmbracoViewPage
+
+@{
+	var siteSettings = Model.GetSiteSettings();
+    if (siteSettings == null) return;
+}
+
+
+
+<div>
+    <h2 class=" text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Services Catalogue </h2>
+    <nav aria-label="Breadcrumb" class="aegov-breadcrumb with-seperator">
+        <ol>
+            <li><a href="#">Home</a></li>
+            <li><a class="text-[#C3C6CB]" href="#" title="Link">Services</a></li>
+            <li><span aria-current="page">Services Catalogue</span></li>
+        </ol>
+    </nav>
+</div>

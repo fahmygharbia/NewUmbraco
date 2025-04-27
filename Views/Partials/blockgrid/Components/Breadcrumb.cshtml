@@ -1,0 +1,25 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Breadcrumb>>
+
+@{
+	var lastLink = Model.Content.Links?.LastOrDefault();
+}
+
+
+<nav aria-label="Breadcrumb" class="aegov-breadcrumb with-seperator">
+	<ol>
+		@foreach (var link in Model.Content.Links!)
+		{
+			if (link == lastLink)
+			{
+				<li><span aria-current="page">@link.Name</span></li>
+			}
+			else
+			{
+				<li><a class="text-[#C3C6CB]" href="@link.Url" title="Link" target="@link.Target">@link.Name</a></li>
+
+			}
+		}
+
+	</ol>
+</nav>

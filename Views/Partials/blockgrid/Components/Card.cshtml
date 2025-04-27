@@ -1,0 +1,66 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Card>>
+
+
+<div>
+
+	<div class="aegov-card card-news">
+		<a href="#">
+			<img class="lazyload" 
+				 data-srcset=" @Url.GetSrcSetUrls(Model.Content.Image, 400, 290)" src="@Model.Content.Image.GetCropUrl(40, 29, quality: 40)" alt="@Model.Content.Image.GetAltText()" width="400" height="290" sizes="auto">
+		</a>
+
+		<div class="card-content">
+			<div class="custom-divide custom-divide-sm flex flex-wrap">
+				<div class="text-aeblack-600 text-sm font-normal">@Model.Content.Date.ToString("dd/MM/yyyy")</div>
+				<a href="#" class="text-sm font-normal">Press release</a>
+			</div>
+			<h5 class="max-md:text-lg line-clamp-3">@Model.Content.Title</h5>
+			<p class="line-clamp-3">@Model.Content.ShortDescription</p>
+			<a href="@Model.Content.Link?.Url" class="aegov-link">
+				@Model.Content.Link?.Name
+				<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
+			</a>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
