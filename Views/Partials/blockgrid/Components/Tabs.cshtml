@@ -2,26 +2,78 @@
 @inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Tabs>>
 @inject ISiteService _ISiteService;
 @{
-    // var tabAreas = _ISiteService.GetTabAreas();
 
-    const int TITLE_AREA = 0;
-    const int TAB_AREA = 1;
-    var tabArea = Model.Areas.ElementAt(TAB_AREA);
-    int index = 1;
-    var itemIndex = string.Empty;
-    var tabTitle = string.Empty;
+	const int TITLE_AREA = 0;
+	const int TAB_AREA = 1;
+	var tabArea = Model.Areas.ElementAt(TAB_AREA);
+	ViewBag.Parent = nameof(Tabs);
+
 }
 
-<!-- Hero Section -->
-<div class="aegov-hero hero-slick hero-slick-full-width relative">
-    <div class="hero-full-width">
-    </div>
+
+
+<h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
+
+
+<div class="aegov-tab tab-pills">
+	<ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
+
+		@foreach (var item in tabArea)
+		{
+
+			if (item.Content is ReusableContent reusable)
+			{
+				var content = reusable.ContentItem;
+				var title = content?.Name();
+			
+				<li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-@title" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">@title</a></li>
+
+			}
+
+		}
+
+	</ul>
 </div>
 
-<!-- Stay Updated -->
-<h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">
-    @await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))
-</h2>
+<div id="SampleLayout-Tabs-07" class="py-4">
+
+	@foreach (var item in tabArea)
+	{
+		@await Html.PartialAsync("blockgrid/Components/ReusableContent", item)
+	}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+<h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
+
 <div class="aegov-tab tab-pills">
     <ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
         @foreach (var item in tabArea)
