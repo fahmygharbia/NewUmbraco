@@ -5,6 +5,8 @@
 	const int TITLE_AREA = 0;
 	const int TAB_AREA = 1;
 	var tabArea = Model.Areas.ElementAt(TAB_AREA);
+	ViewBag.Parent = nameof(Tabs);
+
 }
 
 
@@ -17,68 +19,26 @@
 
 		@foreach (var item in tabArea)
 		{
-			var tabTitles = item.Content as Tab;
-			var title = tabTitles?.Title;
 
+			if (item.Content is ReusableContent reusable)
+			{
+				var content = reusable.ContentItem;
+				var title = content?.Name();
+			
+				<li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-@title" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">@title</a></li>
 
-			<li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-@title" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">@title</a></li>
+			}
+
 		}
-
 
 	</ul>
 </div>
-
-
 
 <div id="SampleLayout-Tabs-07" class="py-4">
 
 	@foreach (var item in tabArea)
 	{
-		@* await Html.PartialAsync("blockgrid/Components/Tab", item); *@
-
-		var content = item.Content as Tab;
-
-		<div class="tab-content" role="tabpanel" id="body-item1-sample-@content!.Title">
-
-			<div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
-
-				@foreach (BlockListItem<ContentModels.Card> card in content.Cards!)
-				{
-
-					@* await Html.PartialAsync("blockgrid/Components/Card", card); *@
-
-					<div>
-
-						<div class="aegov-card card-news">
-							<a href="#">
-								<img class="lazyload"
-									 data-srcset=" @Url.GetSrcSetUrls(card.Content.Image, 400, 290)" src="@card.Content.Image.GetCropUrl(40, 29, quality: 40)" alt="@card.Content.Image.GetAltText()" width="400" height="290" sizes="auto">
-							</a>
-
-							<div class="card-content">
-								<div class="custom-divide custom-divide-sm flex flex-wrap">
-									<div class="text-aeblack-600 text-sm font-normal">  @card.Content.Date.ToString("dd/MM/yyyy")</div>
-
-									@* <a href="#" class="text-sm font-normal">Press release</a> *@
-								</div>
-								<h5 class="max-md:text-lg line-clamp-3">@card.Content.Title</h5>
-								<p class="line-clamp-3">@card.Content.ShortDescription</p>
-								<a href="@card.Content.Link?.Url" class="aegov-link">
-									@card.Content.Link?.Name
-									<svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
-								</a>
-							</div>
-						</div>
-
-					</div>
-
-
-
-				}
-
-			</div>
-		</div>
-
+		@await Html.PartialAsync("blockgrid/Components/ReusableContent", item)
 	}
 
 </div>

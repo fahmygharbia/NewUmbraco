@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using NewUmbraco.Models.ViewModels;
+﻿using NewUmbraco.Models.ViewModels;
 
 
 using Umbraco.Cms.Core.Web;
@@ -24,15 +21,15 @@ public class SiteService : ISiteService
     {
         var sidebarNode = GetSiteSectionRoot(SidebarPage.ModelTypeAlias).SafeCast<SidebarPage>();
         var childNodes = sidebarNode?.Children?
-     .Where(x => x.IsPublished())
-     .OfType<MainSidebar>()
-     .Select(x => new MainSidebarModel(
-         Id: x.Id,
-         Name: x.Name,
-         IsNewPage: x.NewPage,
-         ReturnURL: x.NewPage ==true? x.Url() : string.Empty
-     ))
-     .AsEnumerable();
+                         .Where(x => x.IsPublished())
+                         .OfType<MainSidebar>()
+                         .Select(x => new MainSidebarModel(
+                             Id: x.Id,
+                             Name: x.Name,
+                             IsNewPage: x.NewPage,
+                             ReturnURL: x.NewPage == true ? x.Url() : string.Empty
+                         ))
+                         .AsEnumerable();
 
         return childNodes;
     }
