@@ -365,6 +365,7 @@ FodyWeavers.xsd
 
 # Temp folder containing Examine indexes, NuCache, MediaCache, etc.
 /umbraco/Data/TEMP/
+/umbraco/Data/TEMP/NuCache
 
 # Directories potentially created on remote AFP share
 .AppleDB
