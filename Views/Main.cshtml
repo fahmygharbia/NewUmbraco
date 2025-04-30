@@ -1,48 +1,41 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-
-@{
-	Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-     <!-- Meta Data -->
+
+<head>
     @await Html.PartialAsync("_MetaData")
     @await Html.PartialAsync("_css")
+</head>
 
-       
-    </head>
-    <body id="page-top">
-
+<body>
     <!-- Language Modal -->
     @await Html.PartialAsync("_Language")
+
     <!-- Accessibility  Modal -->
     @await Html.PartialAsync("_Accessibility")
+
     <!-- Gold star modal -->
     @await Html.PartialAsync("_GoldStar")
-   
-    <!-- Navigation-->
+    <!-- Header -->
     @await Html.PartialAsync("_MainNavigation")
+
     <!-- Main Container -->
     <main class="container flex flex-col lg:flex-row gap-5 mx-auto px-4 md:px-6 lg:px-8 py-12">
         <div class="w-full gap-10 flex flex-col">
-       
-    <!-- Navigation-->
-	@await Html.PartialAsync("_BreadCrumb")
-         
-    </div>
+
+            @await Html.PartialAsync("_BreadCrumb")
+
+            @RenderBody()
+        </div>
     </main>
-        @RenderBody()
-    <!-- Main Container -->
 
-    <!-- Footer-->
-    	@await Html.PartialAsync("_Footer")
-         
+    <div class="container my-8">
+    </div>
 
 
+    <!-- Footer -->
+    @await Html.PartialAsync("_Footer")
 
 
-	   
-        </body>
+</body>
+
 </html>
