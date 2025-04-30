@@ -9,5 +9,6 @@ public class RegisterServicesComposer : IComposer
     public void Compose(IUmbracoBuilder builder)
     {
         builder.Services.AddTransient<ISearchService, SearchService>();
+        builder.Services.AddSingleton<ISiteService, SiteService>();
     }
 }

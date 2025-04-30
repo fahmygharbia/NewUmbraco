@@ -1,45 +1,79 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
+using NewUmbraco.Services;
 
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 
-public class SidebarController : UmbracoApiController
+[ApiController]
+[Route("api/sidebar")]
+public class SidebarController : ControllerBase
 {
-    private readonly IUmbracoContextFactory _context;
+    private readonly ISiteService _siteService;
 
-    public SidebarController(IUmbracoContextFactory contextFactory)
+    public SidebarController(ISiteService siteService)
     {
-        _context = contextFactory;
+        _siteService = siteService;
     }
 
-    [HttpGet]
-    public IActionResult GetContent(int id)
+    [HttpGet("content/{nodeId:int}")]
+    public IActionResult GetSidebarContent(int nodeId)
     {
-        using var context = _context.EnsureUmbracoContext();
-        var content = context.UmbracoContext.Content?.GetById(id);
-        if (content == null) return NotFound();
-
-        var isNewPage = content.Value<bool>("newPage");
-
-        if (isNewPage)
+        try
         {
-            var url = content.Url();
-            return Redirect(url);
+            var node = _siteService.GetContent( nodeId);
+
+            if (node == null)
+                return NotFound("Node not found");
+
+            // Return HTML or JSON based on your requirements
+            return Ok(new { HtmlContent =node.Model });
         }
-        else
+        catch (Exception ex)
         {
-            return new ViewResult
-            {
-                ViewName = "~/Views/Partials/_BlockGridContent.cshtml",
-                ViewData = new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<IPublishedContent>(
-               new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(),
-               new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary())
-                {
-                    Model = content
-                }
-            };
+            return StatusCode(500, $"Error: {ex.Message}");
         }
-
-
     }
+
+
+
+
+ 
+    //[HttpGet("content/{nodeId:int}")]
+    //public IActionResult GetSidebarContent_2(int nodeId)
+    //{
+    //    try
+    //    {
+    //        var node = _siteService.GetContent(nodeId);
+
+    //        if (node == null)
+    //            return NotFound("Node not found");
+
+    //        // Use Umbraco's PartialViewRenderer to render Block Grid HTML
+    //        string htmlContent = RenderBlockGridHtml(node);
+
+    //        return Ok(new { HtmlContent = htmlContent });
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return StatusCode(500, $"Error: {ex.Message}");
+    //    }
+    //}
+
+    //// Helper method to render Block Grid HTML
+    //private string RenderBlockGridHtml(IPublishedContent node)
+    //{
+    //    using (var scope = _context.EnsureUmbracoContext())
+    //    {
+    //        var htmlHelper = new HtmlHelper(scope.UmbracoContext);
+
+    //        // Render the Block Grid HTML
+    //        return htmlHelper.GetBlockGridHtml(node, "mainContent").ToHtmlString();
+    //    }
+    //}
+
 }
+
+
+

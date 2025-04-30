@@ -1,7 +1,8 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels
 @inherits UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem<ContentModels.Tabs>>
-
+@inject ISiteService _ISiteService;
 @{
+
 	const int TITLE_AREA = 0;
 	const int TAB_AREA = 1;
 	var tabArea = Model.Areas.ElementAt(TAB_AREA);
@@ -74,57 +75,78 @@
 <h2 class="text-h4 md:text-h3 xl:text-h2 mb-4 xl:mb-6 leading-normal mt-10">@await Html.GetBlockGridItemAreaHtmlAsync(Model.Areas.ElementAt(TITLE_AREA))</h2>
 
 <div class="aegov-tab tab-pills">
-	<ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
-
-		@foreach (var item in tabArea)
-		{
-			var tabTitles = item.Content as Tab;
-			var title = tabTitles?.Title;
-
-			<li role="presentation"><a href="#" onclick="return false;" data-tabs-target="#body-item1-sample-07" role="tab" id="tab-item1-sample-01" aria-controls="body-item1-sample-07" class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">@title</a></li>
-
-
-		}
-
-
-	</ul>
+    <ul class="tab-items gap-4 md:gap-6 lg:gap-7 xl:gap-8 max-xl:overflow-auto" data-tabs-toggle="#SampleLayout-Tabs-07" role="tablist">
+        @foreach (var item in tabArea)
+        {
+            itemIndex = $"item{index}";
+             <li role="presentation">
+                <a href="#"
+                data-tabs-target="#body-@itemIndex-sample-07"
+                role="tab"
+                id="tab-@itemIndex-sample-01"
+                aria-controls="body-@itemIndex-sample-07"
+                class="tab-link whitespace-nowrap h-10 lg:h-12 px-4 lg:px-6">
+                    @((item.Content as Tab)?.Title)
+                </a>
+            </li>
+            index++;
+        }
+    </ul>
 </div>
-
 
 <div id="SampleLayout-Tabs-07" class="py-4">
-	<div class="tab-content" role="tabpanel" id="body-item1-sample-07">
-		<div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
+    @{
+        index = 1;
+        var tabItem = new Tab(null, null);
+        var cardData = new Card(null, null);
+        var cards = new BlockListModel(new List<BlockListItem>());
+        foreach (var item in tabArea)
+        {
+            itemIndex = $"item{index}";
+             tabItem = item.Content.SafeCast<Tab>();
+            cards = tabItem?.Cards;
+            tabTitle = tabItem?.Title;
 
-			@foreach(var item in tabArea)
-			{
-				var contentTab = item.Content as Tab;
-
-				foreach(BlockListItem<ContentModels.Card> card in contentTab!.Cards!)
-				{
-					await Html.PartialAsync("blockgrid/Components/Card", card);
-				}			
-			}
-
-
-
-
-		</div>
-	</div>
-
-
+            <div class="tab-content" role="tabpanel" id="body-@itemIndex-sample-07">
+                <div class="news-card-slider aegovs-slider-style [&_.slick-slide]:mx-2.5 [&_.slick-list]:-mx-2.5 sm:[&_.slick-slide]:mx-3.5 sm:[&_.slick-list]:-mx-3.5">
+                    @if (cards != null)
+                    {
+                        foreach (var row in cards)
+                        {
+                            cardData = row.Content.SafeCast<Card>();
+                            if (cardData != null)
+                            {
+                                <div>
+                                    <div class="aegov-card card-news">
+                                        <a href="#">
+                                            <img src="@cardData.Image.Url()" alt="@cardData.Title" />
+                                        </a>
+                                        <div class="card-content">
+                                            <div class="custom-divide custom-divide-sm flex flex-wrap">
+                                                <div class="text-aeblack-600 text-sm font-normal">
+                                                    @cardData.Date
+                                                </div>
+                                                <a href="#" class="text-sm font-normal">@tabTitle</a>
+                                            </div>
+                                            <h5 class="max-md:text-lg line-clamp-3">@cardData.Title</h5>
+                                            <p class="line-clamp-3">@cardData.ShortDescription</p>
+                                            <a href="#" class="aegov-link">
+                                                View details
+                                                <svg class="link-icon rtl:-scale-x-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                                                    <rect width="256" height="256" fill="none"></rect>
+                                                    <line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                                                    <polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            index++;
+        }
+    }
 </div>
-
- *@
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,6 +2,7 @@
 
 
 using Umbraco.Cms.Core.Web;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace NewUmbraco.Services;
 
@@ -33,6 +34,23 @@ public class SiteService : ISiteService
 
         return childNodes;
     }
+    public IEnumerable<MainSidebarModel> GetTabAreas()
+    {
+        var sidebarNode = GetSiteSectionRoot(ReusableContentRepository.ModelTypeAlias).SafeCast<ReusableContentRepository>();
+        var childNodes = sidebarNode?.Children?
+     .Where(x => x.IsPublished());
+
+     //.OfType<MainSidebar>()
+     //.Select(x => new MainSidebarModel(
+     //    Id: x.Id,
+     //    Name: x.Name,
+     //    IsNewPage: x.NewPage,
+     //    ReturnURL: x.NewPage == true ? x.Url() : string.Empty
+     //))
+     //.AsEnumerable();
+
+        return null;// childNodes;
+    }
     public PageContent GetContent(int id)
     {
         using var context = _umbracoContextFactory.EnsureUmbracoContext();
@@ -50,9 +68,11 @@ public class SiteService : ISiteService
         using var umbracoContextReference = _umbracoContextFactory.EnsureUmbracoContext();
         var contentQuery = umbracoContextReference.UmbracoContext.Content;
 
-        var requiredRoot = contentQuery?.GetAtRoot().FirstOrDefault().Children().Where(r => r.ContentType.Alias == ModelTypeAlias).FirstOrDefault();
+        var requiredRoot = contentQuery?.GetAtRoot().FirstOrDefault().Children();
+        
+        var rr= requiredRoot.Where(r => r.ContentType.Alias == ModelTypeAlias).FirstOrDefault();
 
-        return requiredRoot;
+        return rr;
     }
 
 }
