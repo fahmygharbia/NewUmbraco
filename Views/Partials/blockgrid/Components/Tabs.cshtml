@@ -21,7 +21,9 @@
 		@foreach (var item in tabArea)
 		{
 
-			if (item.Content is ReusableContent reusable)
+
+			if (item.Content is ReusableTab reusable)
+
 			{
 				var content = reusable.ContentItem;
 				var title = content?.Name();
@@ -39,7 +41,9 @@
 
 	@foreach (var item in tabArea)
 	{
-		@await Html.PartialAsync("blockgrid/Components/ReusableContent", item)
+
+		@await Html.PartialAsync("blockgrid/Components/ReusableTab", item)
+
 	}
 
 </div>
@@ -150,3 +154,4 @@
         }
     }
 </div>
+*@

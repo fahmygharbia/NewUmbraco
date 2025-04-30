@@ -34,17 +34,17 @@
                         <li>No pages found</li>
                     }
                 </ul>
-            </nav>+
+            </nav>
         </div>
 
         <div class="container py-12">
-            @await Html.GetBlockGridHtmlAsync(Model, "mainContent")
+			@await Html.GetBlockGridHtmlAsync(Model, "sidebarNavigation")
         </div>
     </div>
 
     <!-- Content Area -->
     <div class="w-full lg:w-[70%] h-full" id="sidebar-content">
-        @await Html.GetBlockGridHtmlAsync(Model?.Children?.FirstOrDefault()!, "mainContent")
+		@await Html.GetBlockGridHtmlAsync(Model?.Children?.FirstOrDefault()!, "sidebarMainContent")
     </div>
 </main>
 

@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Main Sidebar</summary>
-	[PublishedModel("mainSidebar")]
-	public partial class MainSidebar : PublishedContentModel, ISidebarMainContentProperties
+	/// <summary>Reusable Tab</summary>
+	[PublishedModel("reusableTab")]
+	public partial class ReusableTab : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
-		public new const string ModelTypeAlias = "mainSidebar";
+		public new const string ModelTypeAlias = "reusableTab";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<MainSidebar, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ReusableTab, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public MainSidebar(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public ReusableTab(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,25 +50,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Font Size: Enter the font size for the title page, to display it for the sidebar navigation.
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
-		[ImplementPropertyType("fontSize")]
-		public virtual int FontSize => this.Value<int>(_publishedValueFallback, "fontSize");
-
-		///<summary>
-		/// New Page: Check true if you want to open page without sidebar.
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
-		[ImplementPropertyType("newPage")]
-		public virtual bool NewPage => this.Value<bool>(_publishedValueFallback, "newPage");
-
-		///<summary>
-		/// Sidebar Main Content: Use this property to build up the content for the page
+		/// Content Item: Choose the content item to reuse
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.7.2+fd5b8de")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("sidebarMainContent")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel SidebarMainContent => global::Umbraco.Cms.Web.Common.PublishedModels.SidebarMainContentProperties.GetSidebarMainContent(this, _publishedValueFallback);
+		[ImplementPropertyType("contentItem")]
+		public virtual global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent ContentItem => this.Value<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>(_publishedValueFallback, "contentItem");
 	}
 }
